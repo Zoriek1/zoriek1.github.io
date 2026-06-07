@@ -1,97 +1,259 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caio Henrique de O. Queiroz | Dev & Marketing</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Caio Henrique de O. Queiroz | Atribuição & Performance para E-commerce</title>
+<meta name="description" content="Recupero as vendas que seus anúncios perdem no caminho. Rastreamento server-side (Meta CAPI / GA4) e atribuição de WhatsApp para e-commerces e gestores de tráfego." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b0b0d;
+    --ink-2:#141417;
+    --line:#262629;
+    --cream:#f3efe6;
+    --muted:#9a9690;
+    --accent:#ff6a3d;
+    --accent-dim:#a8452a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:"IBM Plex Sans",sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* hairline grid atmosphere */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;
+    opacity:.18;
+    mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 70%);
+  }
+  .wrap{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 28px}
+  .mono{font-family:"IBM Plex Mono",monospace}
+
+  /* ---- hero ---- */
+  header{padding:96px 0 64px}
+  .tag{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+  h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(2.8rem,9vw,5.4rem);
+    line-height:.98;letter-spacing:-.01em}
+  h1 .it{font-style:italic;color:var(--muted)}
+  .role{font-family:"IBM Plex Mono",monospace;font-size:clamp(.85rem,2.4vw,1.05rem);
+    color:var(--cream);margin-top:26px;font-weight:500}
+  .sub{color:var(--muted);max-width:46ch;margin-top:14px;font-size:1rem}
+  .links{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .links a{font-family:"IBM Plex Mono",monospace;font-size:.8rem;letter-spacing:.04em;
+    color:var(--cream);text-decoration:none;border:1px solid var(--line);
+    padding:10px 16px;border-radius:2px;transition:.25s;display:inline-flex;gap:8px;align-items:center}
+  .links a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+  /* ---- section scaffolding ---- */
+  section{padding:46px 0;border-top:1px solid var(--line)}
+  .shead{display:flex;align-items:baseline;gap:16px;margin-bottom:30px}
+  .num{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--accent);letter-spacing:.1em}
+  .stitle{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--muted)}
+  .lead{font-family:"Instrument Serif",serif;font-size:clamp(1.4rem,3.6vw,2rem);line-height:1.3;
+    font-weight:400;max-width:34ch}
+
+  /* ---- readouts ---- */
+  .readouts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-top:30px}
+  .rd{background:var(--ink-2);padding:20px 18px}
+  .rd .v{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;color:var(--cream)}
+  .rd .v small{color:var(--accent);font-size:1.1rem}
+  .rd .k{font-size:.72rem;color:var(--muted);margin-top:6px;letter-spacing:.04em}
+
+  /* ---- stack ---- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:38px}
+  .cols h3{font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--cream);margin-bottom:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--muted);
+    border:1px solid var(--line);padding:6px 11px;border-radius:2px;transition:.2s}
+  .chip:hover{color:var(--accent);border-color:var(--accent-dim)}
+
+  /* ---- experience ---- */
+  .job-h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  .job-h .t{font-family:"Instrument Serif",serif;font-size:1.5rem}
+  .job-h .when{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--accent)}
+  .job .org{color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:.82rem;margin:4px 0 18px}
+  .job ul{list-style:none;display:grid;gap:12px}
+  .job li{position:relative;padding-left:22px;color:#ddd8cd;font-size:.98rem}
+  .job li::before{content:"→";position:absolute;left:0;color:var(--accent);font-family:"IBM Plex Mono",monospace}
+
+  /* ---- projects ---- */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{border:1px solid var(--line);border-radius:3px;padding:24px;background:var(--ink-2);
+    transition:.28s;display:flex;flex-direction:column;gap:12px}
+  .card:hover{border-color:var(--accent-dim);transform:translateY(-3px)}
+  .card .badge{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);align-self:flex-start;
+    border:1px solid var(--accent-dim);padding:3px 8px;border-radius:2px}
+  .card h4{font-family:"Instrument Serif",serif;font-size:1.5rem;font-weight:400}
+  .card p{color:var(--muted);font-size:.92rem;flex:1}
+  .card .stk{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:#7d7a74}
+  .card a{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--cream);
+    text-decoration:none;align-self:flex-start;transition:.2s}
+  .card a:hover{color:var(--accent);gap:10px}
+
+  /* ---- formation + footer ---- */
+  .edu{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  .edu .t{font-family:"Instrument Serif",serif;font-size:1.5rem}
+  .edu .w{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--accent)}
+  footer{border-top:1px solid var(--line);padding:34px 0 60px;
+    font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--muted);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer .dot{color:var(--accent)}
+
+  /* ---- motion ---- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  .a1{animation:up .8s .05s both}.a2{animation:up .8s .18s both}
+  .a3{animation:up .8s .31s both}.a4{animation:up .8s .44s both}.a5{animation:up .8s .57s both}
+
+  @media(max-width:680px){
+    .cols,.grid2,.readouts{grid-template-columns:1fr}
+    .readouts{grid-template-columns:1fr 1fr}
+    header{padding:64px 0 40px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body>
+<div class="wrap">
 
-    <!-- Header / Hero -->
-    <header class="bg-slate-900 text-white py-16 px-4 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-2">Caio Henrique de O. Queiroz</h1>
-        <p class="text-xl text-blue-400 font-medium">Desenvolvedor Full Stack junior & Soluções de Marketing (GA4/CAPI)</p>
-        <div class="mt-6 flex justify-center gap-4">
-            <a href="https://github.com/zoriek1" class="hover:text-blue-400 transition"><i class="fab fa-github text-2xl"></i></a>
-            <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-linkedin text-2xl"></i></a>
-            <a href="mailto:seuemail@gmail.com" class="hover:text-blue-400 transition"><i class="fas fa-envelope text-2xl"></i></a>
+  <header>
+    <div class="tag a1">Atribuição &amp; Performance · E-commerce · Goiânia, BR</div>
+    <h1 class="a2">Caio Henrique<br><span class="it">de O. Queiroz</span></h1>
+    <p class="role a3">Eu conecto seus anúncios às vendas reais — e faço o algoritmo do Meta otimizar pelo que de fato gera dinheiro.</p>
+    <p class="sub a3">Para quem investe em tráfego mas não enxerga o retorno real: instalo a medição server-side que recupera as vendas perdidas no caminho entre o clique e a compra — inclusive em funis de WhatsApp — e devolve esses dados pro Meta e pro GA4.</p>
+    <nav class="links a4">
+      <a href="https://wa.me/5562991761430?text=Oi%20Caio%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20atribui%C3%A7%C3%A3o." target="_blank" rel="noopener">Falar no WhatsApp →</a>
+      <a href="mailto:Queirozcho@gmail.com">E-mail</a>
+      <a href="https://github.com/Zoriek1" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <section>
+    <div class="shead"><span class="num">01</span><span class="stitle">O problema que eu resolvo</span></div>
+    <p class="lead reveal">A maioria das contas de anúncio está medindo errado — e otimizando no escuro.</p>
+    <p class="sub reveal" style="max-width:60ch;margin-top:18px">Boa parte das vendas se perde no caminho entre o clique e a compra, ainda mais quando a conversa passa pelo WhatsApp. Sem esses dados, o Meta não consegue otimizar e o custo por venda sobe. Eu reconstruo esse caminho de ponta a ponta, e o algoritmo volta a aprender com as vendas que realmente acontecem.</p>
+  </section>
+
+  <section>
+    <div class="shead"><span class="num">02</span><span class="stitle">Resultados em produção</span></div>
+    <div class="readouts reveal">
+      <div class="rd"><div class="v"><small>R$</small>26<small>→</small>14</div><div class="k">Custo por lead, quase pela metade (−46%)</div></div>
+      <div class="rd"><div class="v">95<small>%</small></div><div class="k">Eventos enviados sem contagem duplicada</div></div>
+      <div class="rd"><div class="v">7.9<small>/</small>8.5</div><div class="k">Nota de qualidade do rastreamento (lead / compra) que o Meta usa pra otimizar</div></div>
+      <div class="rd"><div class="v">7</div><div class="k">Landing pages com correspondência 1:1 por campanha</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="num">03</span><span class="stitle">O que eu faço por você</span></div>
+    <div class="job reveal" style="margin-bottom:34px">
+      <ul>
+        <li><strong>Rastreamento server-side (Meta CAPI + GA4)</strong> — recupero conversões que o pixel sozinho deixa passar.</li>
+        <li><strong>Atribuição de WhatsApp</strong> — ligo o clique no anúncio à venda fechada na conversa.</li>
+        <li><strong>Landing pages alinhadas ao anúncio</strong> — uma página por campanha, mensagem batendo do anúncio até a compra.</li>
+        <li><strong>Auditoria de conversão do e-commerce</strong> — encontro onde você perde dado (e dinheiro) ao longo do funil.</li>
+        <li><strong>Sistemas sob medida</strong> — ferramentas internas como gestão de pedidos, quando a operação precisa.</li>
+      </ul>
+    </div>
+    <div class="cols reveal">
+      <div>
+        <h3>Ferramentas · Engenharia</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">React</span>
+          <span class="chip">Vite</span><span class="chip">TypeScript</span><span class="chip">PostgreSQL</span>
+          <span class="chip">Docker</span><span class="chip">Cloudflare</span><span class="chip">VPS</span>
         </div>
-    </header>
-
-    <main class="max-w-5xl mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Coluna Esquerda: Sobre e Skills -->
-        <div class="md:col-span-1">
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold border-b-4 border-blue-500 mb-4 inline-block">Sobre Mim</h2>
-                <p class="text-gray-600 leading-relaxed">
-                    Profissional híbrido focado em criar soluções tecnológicas que geram conversão. Especialista em unir código limpo com estratégias de growth hacking.
-                </p>
-            </section>
-
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold border-b-4 border-blue-500 mb-4 inline-block">Programação</h2>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">JavaScript</span>
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">React</span>
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Node.js</span>
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">SQL</span>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="text-2xl font-bold border-b-4 border-orange-500 mb-4 inline-block">Marketing</h2>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">SEO / SEM</span>
-                    <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Google Ads</span>
-                    <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Copywriting</span>
-                    <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Data Analytics</span>
-                </div>
-            </section>
+      </div>
+      <div>
+        <h3>Ferramentas · Marketing &amp; Dados</h3>
+        <div class="chips">
+          <span class="chip">Meta Ads</span><span class="chip">Meta CAPI</span><span class="chip">Google Ads</span>
+          <span class="chip">GA4</span><span class="chip">Nuvemshop</span><span class="chip">Bling ERP</span>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Coluna Direita: Experiência e Projetos -->
-        <div class="md:col-span-2">
-            <section class="mb-10">
-                <h2 class="text-2xl font-bold mb-6 italic text-slate-700 underline">Experiência Profissional</h2>
-                
-                <div class="mb-6 border-l-4 border-gray-200 pl-4">
-                    <h3 class="font-bold text-lg text-blue-600">Desenvolvedor Frontend & Analista de Performance</h3>
-                    <p class="text-sm text-gray-500">Nome da Empresa | 2022 - Presente</p>
-                    <p class="mt-2 text-gray-700 underline">Otimizei o tempo de carregamento das landing pages em 40%, resultando em um aumento de 15% na taxa de conversão.</p>
-                </div>
+  <section>
+    <div class="shead"><span class="num">04</span><span class="stitle">Experiência</span></div>
+    <div class="job reveal">
+      <div class="job-h">
+        <span class="t">Líder de Tecnologia &amp; Marketing</span>
+        <span class="when">2024 — Presente</span>
+      </div>
+      <div class="org">Plante Uma Flor · Goiânia</div>
+      <ul>
+        <li>Montei o rastreamento que liga o anúncio à venda fechada no WhatsApp; o Meta passou a enxergar os leads com qualidade 7.9/10 e as compras com 8.5/10, sem contar a mesma venda duas vezes.</li>
+        <li>Estruturei 7 landing pages (uma por campanha, mensagem alinhada ao anúncio) e reduzi o custo por lead de R$26 para R$14 — quase pela metade.</li>
+        <li>Reorganizei as campanhas de Google Ads e auditei toda a medição de conversão do e-commerce (GA4 + Nuvemshop).</li>
+        <li>Desenvolvi e opero o sistema interno que organiza os pedidos da operação.</li>
+      </ul>
+    </div>
+  </section>
 
-                <div class="mb-6 border-l-4 border-gray-200 pl-4">
-                    <h3 class="font-bold text-lg text-blue-600">Freelance Full Stack Developer</h3>
-                    <p class="text-sm text-gray-500">Projetos Diversos | 2020 - 2022</p>
-                    <p class="mt-2 text-gray-700">Criação de e-commerces e automações de marketing em Python.</p>
-                </div>
-            </section>
+  <section>
+    <div class="shead"><span class="num">05</span><span class="stitle">Soluções em destaque</span></div>
+    <div class="grid2">
+      <article class="card reveal">
+        <span class="badge">Em produção</span>
+        <h4>Gestor de Pedidos</h4>
+        <p>Sistema que organiza os pedidos e qualifica cada lead automaticamente, disparando os eventos certos pro Meta na hora certa — sem ninguém precisar lembrar de fazer isso na mão.</p>
+        <span class="stk">Flask · React/TS · PostgreSQL · Docker/VPS</span>
+        <a href="https://github.com/Zoriek1" target="_blank" rel="noopener">Sistema privado · ver perfil →</a>
+      </article>
+      <article class="card reveal">
+        <span class="badge">Atribuição</span>
+        <h4>WhatsApp → venda rastreada</h4>
+        <p>Resolve o ponto cego nº1 de quem vende por WhatsApp: faz a venda fechada no chat voltar como conversão atribuída ao anúncio que a gerou.</p>
+        <span class="stk">Python · Meta Conversions API · GA4</span>
+        <a href="https://github.com/Zoriek1" target="_blank" rel="noopener">Ver repositório →</a>
+      </article>
+    </div>
+  </section>
 
-            <section>
-                <h2 class="text-2xl font-bold mb-6 italic text-slate-700 underline">Projetos em Destaque</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded shadow hover:shadow-lg transition border border-gray-100">
-                        <h4 class="font-bold">Dashboard de Métricas Ad</h4>
-                        <p class="text-sm text-gray-600 mb-4">App em React que consome API do Facebook Ads para gerar relatórios automáticos.</p>
-                        <a href="#" class="text-blue-500 hover:underline text-sm font-medium">Ver Repositório →</a>
-                    </div>
-                    <div class="bg-white p-4 rounded shadow hover:shadow-lg transition border border-gray-100">
-                        <h4 class="font-bold">Landing Page de Alta Conversão</h4>
-                        <p class="text-sm text-gray-600 mb-4">Template otimizado para SEO e Core Web Vitals.</p>
-                        <a href="#" class="text-blue-500 hover:underline text-sm font-medium">Ver Demo →</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
+  <section>
+    <div class="shead"><span class="num">06</span><span class="stitle">Formação</span></div>
+    <div class="edu reveal">
+      <span class="t">Licenciatura em Física</span>
+      <span class="w">Universidade Federal de Goiás · UFG</span>
+    </div>
+    <p class="sub reveal" style="margin-top:14px">Base que me deixou obcecado por medir certo: dado limpo, hipótese testada e número que reflete a realidade — não o que é mais fácil de contar.</p>
+  </section>
 
-    <footer class="text-center py-10 text-gray-400 text-sm">
-        <p>© 2024 Zoriek - Feito com HTML e Tailwind CSS</p>
-    </footer>
+  <footer>
+    <span>© 2026 Caio H. de O. Queiroz</span>
+    <span>Goiânia <span class="dot">·</span> BR <span class="dot">·</span> feito à mão</span>
+  </footer>
 
+</div>
+
+<script>
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.16});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>
